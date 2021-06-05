@@ -1,0 +1,93 @@
+type Auth { 
+  id: String 
+  email: String 
+  magic_word: String 
+  username: String 
+}    
+type User { 
+  id: String 
+  createdAt: String 
+  email: String 
+  role: Role 
+  token_version: Int 
+  username: String 
+    
+  follow_ids: [String] 
+    
+  projects_keyboards: [Keyboard] 
+}    
+enum Role { 
+  BASIC 
+  BANNED 
+  CONTENT 
+  CREATOR 
+  ADMIN 
+}    
+type Article { 
+  id: String 
+  createdAt: String 
+  body: String 
+}    
+type Keyboard { 
+  id: String 
+  extra_pcbs: Boolean 
+  extra_plates: Boolean 
+  about: String 
+  alias: String 
+  angle: String 
+  brand: String 
+  connection: Strng 
+  firmware: String 
+  mount: String 
+  name: String 
+  pcb: String 
+  size: String 
+  switch_support: String 
+  images: [String] 
+  layouts: [String] 
+  standarization: [String] 
+    
+  color_chips: [Color] 
+  editions: [Edition] 
+  cases: [Case] 
+  plates: [Plate] 
+  weights: [Weight] 
+    
+  User: User 
+  user_id: String 
+}    
+type Edition { 
+  id: String 
+  name: String 
+  price: String 
+  keyboard: Keyboard 
+  keyboard_id: String 
+}    
+type Case { 
+  id: String 
+  material: String 
+  price: String 
+  keyboard: Keyboard 
+  keyboard_id: String 
+}    
+type Plate { 
+  id: String 
+  material: String 
+  price: String 
+  keyboard: Keyboard 
+  keyboard_id: String 
+}    
+type Weight { 
+  id: String 
+  material: String 
+  price: String 
+  keyboard: Keyboard 
+  keyboard_id: String 
+}    
+type Color { 
+  id: String 
+  hex: String 
+  chip: String 
+  keyboard: Keyboard 
+  keyboard_id: String 
+}    

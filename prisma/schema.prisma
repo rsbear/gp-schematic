@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DB_URL")
+}
+
+model Auth {
+  id          String @default(cuid()) @id
+  email       String @unique
+  magic_word  String @unique
+  username    String?
+}
+
+model User {
+  id            String     @default(cuid()) @id
+  createdAt     String?
+  email         String     @unique
+  role          Role       @default(BASIC)
+  token_version Int?
+  username      String     @unique
+
+  follow_ids    String[]
+
+  projects_keyboards    Keyboard[]
+}
+
+enum Role {
+  BASIC
+  BANNED
+  CONTENT
+  CREATOR
+  ADMIN
+}
+
+model Article {
+  id            String     @default(cuid()) @id
+  createdAt     String?
+  body          String?
+}
+
+ model Keyboard {
+   id              String   @default(cuid()) @id
+   extra_pcbs      Boolean  @default(false)
+   extra_plates    Boolean  @default(false)
+   about           String?
+   alias           String   @unique
+   angle           String?
+   brand           String?
+   connection      Strng?
+   firmware        String?
+   mount           String?
+   name            String
+   pcb             String?
+   size            String?
+   switch_support  String?
+   images          String[]
+   layouts         String[]
+   standarization  String[]
+
+   color_chips   Color[]
+   editions      Edition[]
+   cases         Case[]
+   plates        Plate[]
+   weights       Weight[]
+
+   User          User?    @relation(fields: [user_id], references: [id])
+   user_id       String?
+ }
+
+ model Edition {
+   id          String   @default(cuid()) @id
+   name        String?
+   price       String?
+   keyboard    Keyboard @relation(fields: [keyboard_id], references: [id])
+   keyboard_id String
+}
+
+ model Case {
+   id          String  @default(cuid()) @id
+   material    String?
+   price       String?
+   keyboard    Keyboard @relation(fields: [keyboard_id], references: [id])
+   keyboard_id String
+ }
+
+ model Plate {
+   id          String  @default(cuid()) @id
+   material    String?
+   price       String?
+   keyboard    Keyboard @relation(fields: [keyboard_id], references: [id])
+   keyboard_id String
+ }
+
+ model Weight {
+   id          String  @default(cuid()) @id
+   material    String?
+   price       String?
+   keyboard    Keyboard @relation(fields: [keyboard_id], references: [id])
+   keyboard_id String
+ }
+
+ model Color {
+   id          String    @default(cuid()) @id
+   hex         String?
+   chip        String?
+   keyboard    Keyboard? @relation(fields: [keyboard_id], references: [id])
+   keyboard_id String?
+ }
+i

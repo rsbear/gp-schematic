@@ -1,0 +1,5 @@
+schematic:
+  prisma:
+    input: "prisma/schema.prisma"
+  graphql:
+    output: "graphql/schema.graphql"
