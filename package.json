@@ -1,18 +1,35 @@
 {
-  "name": "gp-schematic",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "@rsbear/gp-schematic",
+  "version": "0.0.1",
+  "source": "src/index.ts",
+  "main": "dist/gp-schematic.js",
+  "umd:main": "dist/gp-schematic.umd.js",
+  "jsnext:main": "dist/gp-schematic.modern.js",
+  "module": "dist/gp-schematic.module.js",
+  "syntax": {
+    "esmodules": "dist/gp-schematic.modern.js"
+  },
   "license": "MIT",
+  "author": "Ross Stevens",
+  "url": "https://github.com/rsbear/gp-schematic",
+  "repository": "https://github.com/rsbear/gp-schematic",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "build": "rimraf dist && yarn build:minified && yarn cleanup",
+    "build:minified": "microbundle --name schematic --output dist/",
+    "build:uncompressed": "microbundle --no-compress --name schematic --output dist/",
+    "cleanup": "rimraf .rpt2_cache && rimraf .rts2_cache_cjs && rimraf .rts2_cache_umd && rimraf .rts2_cache_es",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/node": "^15.12.0",
-    "event-stream": "^4.0.1",
-    "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
+    "microbundle": "^0.13.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "event-stream": "^4.0.1",
+    "fs-extra": "^10.0.0"
+  }
 }
