@@ -1,6 +1,6 @@
 {
   "name": "@rsbear/gp-schematic",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "license": "MIT",
