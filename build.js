@@ -1,3 +1,4 @@
+// fun
 require("esbuild").buildSync({
   entryPoints: ["src/index.ts"],
   bundle: true,
