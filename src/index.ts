@@ -151,7 +151,7 @@ const s = fs
         console.log("Error:", err);
       })
       .on("end", () => {
-        console.log("Finish reading.");
+        console.log("Reader reads the reading");
         haha(lines);
       })
   );
