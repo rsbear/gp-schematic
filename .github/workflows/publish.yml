@@ -60,4 +60,4 @@ jobs:
           git config --global user.name "rsbear"
           yarn publish --@rsbear:registry=https://npm.pkg.github.com/
         env:
-          NODE_AUTH_TOKEN: ${{secrets.gh_token}}e
+          NODE_AUTH_TOKEN: ${{secrets.gh_token}}
