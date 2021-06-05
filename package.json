@@ -8,18 +8,19 @@
   "url": "https://github.com/rsbear/gp-schematic",
   "repository": "https://github.com/rsbear/gp-schematic",
   "scripts": {
+    "dev": "npx ts-node src/index.ts --input=prisma/schema.prisma --output=graphql/test.graphql", 
     "build": "rimraf dist && node build.js && yarn cleanup",
     "cleanup": "rimraf .rpt2_cache && rimraf .rts2_cache_cjs && rimraf .rts2_cache_umd && rimraf .rts2_cache_es",
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/node": "^15.12.0",
-    "js-yaml": "^4.1.0",
     "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   },
   "dependencies": {
+    "js-yaml": "^4.1.0",
     "esbuild": "^0.12.6",
     "event-stream": "^4.0.1",
     "fs-extra": "^10.0.0"
