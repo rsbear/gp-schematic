@@ -1,6 +1,6 @@
 {
   "name": "@rsbear/gp-schematic",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "source": "src/index.ts",
   "main": "dist/gp-schematic.js",
   "umd:main": "dist/gp-schematic.umd.js",
