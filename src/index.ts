@@ -12,7 +12,9 @@ interface Doc {
     };
   };
 }
-const { schematic }: Doc = yaml.load(fs.readFileSync("schematic.yml", "utf8"));
+const { schematic }: Doc = yaml.load(
+  fs.readFileSync("./../../../../schematic.yml", "utf8")
+);
 
 async function haha(lines: string[]) {
   let i = 0;
