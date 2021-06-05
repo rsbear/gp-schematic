@@ -33,19 +33,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-      #publish to gpr
-      - uses: actions/setup-node@master
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@rsbear'
-      - name: Publish to GitHub Package Registry
-        run: |
-          git config --global user.email "hellorosss@gmail.com"
-          git config --global user.name "rsbear"
-          yarn publish --@rsbear:registry=https://npm.pkg.github.com/
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.gh_token}}e
         
       # publish to npm    
       - uses: actions/setup-node@master
@@ -61,3 +48,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
+      #publish to gpr
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@rsbear'
+      - name: Publish to GitHub Package Registry
+        run: |
+          git config --global user.email "hellorosss@gmail.com"
+          git config --global user.name "rsbear"
+          yarn publish --@rsbear:registry=https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.gh_token}}e
