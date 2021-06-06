@@ -1,4 +1,3 @@
-import yaml from "js-yaml";
 import fs from "fs-extra";
 import es from "event-stream";
 
@@ -12,8 +11,18 @@ interface Doc {
     };
   };
 }
-const config: Doc = yaml.load(fs.readFileSync("schematic.yml", "utf8"));
-console.log("config:", config);
+
+let input = "";
+let output = "";
+
+for (const flag of process.argv) {
+  if (flag.includes("--input")) {
+    input = flag.split("=")[1];
+  }
+  if (flag.includes("--output")) {
+    output = flag.split("=")[1];
+  }
+}
 
 async function haha(lines: string[]) {
   let i = 0;
@@ -125,12 +134,12 @@ async function haha(lines: string[]) {
     });
   }
 
-  fs.outputFile(config.schematic.graphql.output, almostThere, (err) => {
+  fs.outputFile(output, almostThere, (err) => {
     if (err) {
       console.log(err);
     }
 
-    fs.readFile(config.schematic.graphql.output, "utf8", (err, data) => {
+    fs.readFile(output, "utf8", (err, data) => {
       console.log("Tight, GP Schematic success"); // => hello!
     });
   });
@@ -138,7 +147,7 @@ async function haha(lines: string[]) {
 
 let lines = [];
 const s = fs
-  .createReadStream(config.schematic.prisma.input)
+  .createReadStream(input)
   .pipe(es.split())
   .pipe(
     es
