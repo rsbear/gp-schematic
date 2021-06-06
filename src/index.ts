@@ -12,7 +12,8 @@ interface Doc {
     };
   };
 }
-const { schematic }: Doc = yaml.load(fs.readFileSync("schematic.yml", "utf8"));
+const config: Doc = yaml.load(fs.readFileSync("schematic.yml", "utf8"));
+console.log("config:", config);
 
 async function haha(lines: string[]) {
   let i = 0;
@@ -124,12 +125,12 @@ async function haha(lines: string[]) {
     });
   }
 
-  fs.outputFile(schematic.graphql.output, almostThere, (err) => {
+  fs.outputFile(config.schematic.graphql.output, almostThere, (err) => {
     if (err) {
       console.log(err);
     }
 
-    fs.readFile(schematic.graphql.output, "utf8", (err, data) => {
+    fs.readFile(config.schematic.graphql.output, "utf8", (err, data) => {
       console.log("Tight, GP Schematic success"); // => hello!
     });
   });
@@ -137,7 +138,7 @@ async function haha(lines: string[]) {
 
 let lines = [];
 const s = fs
-  .createReadStream(schematic.prisma.input)
+  .createReadStream(config.schematic.prisma.input)
   .pipe(es.split())
   .pipe(
     es
