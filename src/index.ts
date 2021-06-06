@@ -108,6 +108,10 @@ async function haha(lines: string[]) {
           recomposeField = composeField.replace("?", "");
         }
 
+        if (composeField.includes("DateTime")) {
+          recomposeField = composeField.replace("DateTime", "String");
+        }
+
         if (composeField.includes("[]")) {
           const breakArrTypes = composeField.split(" ");
           const closeIt = breakArrTypes[1].replace("[]", "");
